@@ -1,23 +1,15 @@
-// class SongCard extends HTMLElement {
-//   set song(song) {
-//     this.innerHTML = `
-//         <h2>${song.title}</h2>
-//         <h5>Tekst: ${song.text}</h5>
-//         <h5>Melodi: ${song.comhposer}</h5>
-//         <p>${song.lyrics.body.html}</p>
-//         `;
-//   }
-// }
-
-// customElements.define("song-card", SongCard);
 export const songCardTemplate = (songCardData) => {
-  const { title, text, melody, lyrics } = songCardData;
+  const { title, tag1, tag2, tag3 } = songCardData;
 
   return `
-  <h2>${title}</h2>
-  <h5>Tekst: ${text}</h5>
-  <h5>Melodi: ${melody}</h5>
-  <p>${lyrics}</p>
+  <article>
+    <h2>${title}</h2>
+    <div class="tags">
+      <p>${tag1}</p>
+      <p>${tag2}</p>
+      <p>${tag3}</p>
+    </div>
+  </article>
   `;
 };
 
@@ -29,9 +21,10 @@ export class SongCard extends HTMLElement {
   connectedCallback() {
     this.data = {
       title: this.getAttribute("title") || "",
-      text: this.getAttribute("text") || "",
-      melody: this.getAttribute("melody") || "",
-      lyrics: this.getAttribute("lyrics") || "",
+      tags: this.getAttribute("tags") || "",
+      tag1: this.getAttribute("tag1") || "",
+      tag2: this.getAttribute("tag2") || "",
+      tag3: this.getAttribute("tag3") || "",
     };
     this.innerHTML = this.render();
   }
