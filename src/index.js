@@ -1,6 +1,6 @@
-// import NavBar from "./components/navBar/index";
 // forstå lige Request metoden ordentligt
 import "./components/songCard/songCard.js";
+import "./components/navBar/NavBar.js";
 const requestSongs = new Request("https://kjoller.p.rapidapi.com/songs");
 const songSection = document.getElementById("allSongs");
 
@@ -19,9 +19,20 @@ const options = {
 async function getSongs() {
   const res = await fetch(requestSongs, options);
   const json = await res.json();
-
+  console.log(json.data);
+  let tagOne;
+  let tagTwo;
+  let tagThree;
   // songData.push(data);
   json.data.forEach((song) => {
-    songSection.innerHTML += `<song-card title="${song.title}" text="${song.text}" melody="${song.melody}" lyrics="${song.lyrics.body.html}"></song-card>`;
+    tagOne = song.tags[0];
+    tagTwo = song.tags[1];
+    tagThree = song.tags[2];
+
+    songSection.innerHTML += `<song-card title="${song.title}" text="${
+      song.text
+    }" melody="${song.melody}" tag1="${tagOne}" tag2="${tagTwo || ""}" tag3="${
+      tagThree || ""
+    }"></song-card>`;
   });
 }
