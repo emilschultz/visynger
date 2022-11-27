@@ -1,9 +1,10 @@
 export const navBarTemplate = (navbarData) => {
-  const { link1 } = navbarData;
+  const { home, categories } = navbarData;
 
   return `
     <nav>
-      <a href="${link1}">link1</a>
+      <a href="${home}">home</a>
+      <a href="${categories}">Kategorier</a>
     </nav>
   `;
 };
@@ -16,7 +17,8 @@ export class NavBar extends HTMLElement {
 
   connectedCallback() {
     this.data = {
-      link1: this.getAttribute("link1") || "",
+      home: this.getAttribute("home") || "",
+      categories: this.getAttribute("categories") || "",
     };
     this.innerHTML = this.render();
   }
