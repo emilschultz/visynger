@@ -19,19 +19,24 @@ const options = {
 async function getSongs() {
   const res = await fetch(requestSongs, options);
   const json = await res.json();
+
   console.log(json.data);
+
   let tagOne;
   let tagTwo;
   let tagThree;
-  // songData.push(data);
+
   json.data.forEach((song) => {
     tagOne = song.tags[0];
     tagTwo = song.tags[1];
     tagThree = song.tags[2];
 
-    songSection.innerHTML += `<song-card title="${song.title}" text="${
-      song.text
-    }" melody="${song.melody}" tag1="${tagOne}" tag2="${tagTwo || ""}" tag3="${
+    songSection.innerHTML += `<song-card instrumental="${
+      song.instrumental
+    }" lyrics="${song.lyrics}" id="${song.id}"
+    )}" title="${song.title}" text="${song.text}" melody="${
+      song.melody
+    }" tag1="${tagOne || ""}" tag2="${tagTwo || ""}" tag3="${
       tagThree || ""
     }"></song-card>`;
   });
